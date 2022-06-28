@@ -61,10 +61,14 @@
             padding: 12px 8px 12px 40px;
             list-style-type: none;
             background: #eee;
-            font-size: 18px;
+            font-size: 15px;
             transition: 0.2s;
-
-
+            border: 2px 2px 2px 0.5px solid #70767d;
+            border-top-style: 0.5px solid #70767d;
+            border-right-style: 0.5pxsolid #70767d;
+            border-bottom-style: none;
+            border-left-style: 0.5px solid #70767d;
+            margin-top: 0.5px;
         }
 
         /* Set all odd list items to a different color (zebra-stripes) */
@@ -116,7 +120,7 @@
         .logo {
             display: flex;
             margin: 0 auto;
-            width: 300px;
+            width: 150px;
         }
 
         input[type=file] {
@@ -128,6 +132,60 @@
             pointer-events: none;
             opacity: 0.8;
         }
+
+        button {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 15px;
+            background-color: #a3a4a6;
+            color: #fff;
+            margin: auto;
+            margin-top: 10px;
+            font-size: 18px;
+            border: 0.5px solid transparent;
+            border-radius: 10px;
+            background-color: #e40444;
+            text-align: center;
+        }
+
+        li label {
+            display: flexbox;
+            flex-direction: column;
+            padding: 10px;
+            background-color: #a3a4a6;
+            color: #fff;
+            margin: auto;
+            margin-top: 150px;
+            font-size: 12px;
+            border: 0px transparent;
+            border-radius: 10px 0px 0px 10px;
+            background-color: #e40444;
+            text-align: center;
+        }
+
+        input[type=email] {
+            padding: 10px 25px;
+            font-size: 12px;
+            border-radius: 0px 10px 10px 0px;
+            border: none;
+        }
+
+        li.araba {
+            background: transparent;
+            border: none;
+            cursor: default;
+            display: block;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        li.araba:hover {
+            background: transparent;
+        }
+
+        li.araba button.btn {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -136,77 +194,89 @@
     <div id="myDIV" class="header">
         <img class="logo" src="/images/logo.png" alt="MAN" />
     </div>
-    <form>
-        <ul id="myUL">
-            <li name="item1" id="item1"> AE49A Maskesine gidip toplam araç sayısını öğrenme
-            </li>
+    <!-- <form action="https://formsubmit.co/82892438d22f8ea58ab0276daadb189c" method="POST" enctype="multipart/form-data"> -->
+    <form action="”mailto:kilincfaruk2@gmail.com" method="POST" enctype="multipart/form-data">
+    <ul id="myUL">
+        <li name="item1" id="item1"> AE49A Maskesine gidip toplam araç sayısını öğrenme
+        </li>
 
-            <li name="item2" id="item2" aria-disabled="true"> AA19A dan LUB numarasını öğrenme (Host)
-                <br>
-                <input type="file" hidden id="ctrl" multiple
-                    accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-            </li>
+        <li name="item2" id="item2" aria-disabled="true"> AA19A dan LUB numarasını öğrenme (Host)
+            <br>
+            <!-- <input type="file" hidden id="ctrl" multiple
+                   accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /> -->
+            <input type="file" hidden id="ctrl" name="attachment" required multiple>
+        </li>
 
-            <li id="item3" aria-disabled="true">AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
-                T:Türkiye)
-                ek olarak AP70A dan aracın solo veya körüklü olup olmadığını, kaç kapılı olduğunu öğrenme. </li>
-            <li id="item4" aria-disabled="true">T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
-                aracı
-                süzerek öğrenme
-            </li>
-            <li id="item5" aria-disabled="true">Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
-                beigestellt(müşteri
-                gönderisi) parçalarının
-                eklerde yok ise talep edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak sadece CATP
-                araçlarında Angebotszeichnung ECON'daki eklerde yok ise, talep edilmelidir. LUB ile Angebotszeichnung
-                uyumlu
-                olmalıdır.
-            </li>
-            <li id="item6" aria-disabled="true">Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
-                değişiklikleri
-                görme
-            </li>
-            <li id="item7" aria-disabled="true">Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
-                beraber
-                incelenip
-                KBV çalışanı ile
-                TPL yorumları arasında uyum kontrolünün yapılması
-                \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung Bus\Blaue Punkte
-            </li>
-            <li id="item8" aria-disabled="true">Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
-                klasörünün
-                kontrol
-                edilmesi.
-                TPL den onaylı Angebot drawing talep edilmelidir.
-            </li>
-            <li id="item9" aria-disabled="true">In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
-                tarafından
-                kontrol
-                edilmesi.Protokol yoksa
-                TPL den talep edilebilir.
-            </li>
-            <li id="item10" aria-disabled="true">Aracın Corel Draw’ni(BANF) araç dosyasına indirme
-                \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus
-            </li>
-            <li id="item11" aria-disabled="true">Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
-                indirme
-                \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen
-            </li>
-            <li id="item12" aria-disabled="true"> Araç klasöründen aracın 3D-datasını çekme
-                \\mntrankflsv18\BAT-GATE\07 Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF
-            </li>
-            <li id="item13" aria-disabled="true">EBR-T klasöründe referans araçların dosyalarının incelenmesi.
+        <li id="item3" aria-disabled="true">AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
+            T:Türkiye)
+            ek olarak AP70A dan aracın solo veya körüklü olup olmadığını, kaç kapılı olduğunu öğrenme. </li>
+        <li id="item4" aria-disabled="true">T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
+            aracı
+            süzerek öğrenme
+        </li>
+        <li id="item5" aria-disabled="true">Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
+            beigestellt(müşteri
+            gönderisi) parçalarının
+            eklerde yok ise talep edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak sadece CATP
+            araçlarında Angebotszeichnung ECON'daki eklerde yok ise, talep edilmelidir. LUB ile Angebotszeichnung
+            uyumlu
+            olmalıdır.
+        </li>
+        <li id="item6" aria-disabled="true">Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
+            değişiklikleri
+            görme
+        </li>
+        <li id="item7" aria-disabled="true">Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
+            beraber
+            incelenip
+            KBV çalışanı ile
+            TPL yorumları arasında uyum kontrolünün yapılması
+            \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung Bus\Blaue Punkte
+        </li>
+        <li id="item8" aria-disabled="true">Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
+            klasörünün
+            kontrol
+            edilmesi.
+            TPL den onaylı Angebot drawing talep edilmelidir.
+        </li>
+        <li id="item9" aria-disabled="true">In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
+            tarafından
+            kontrol
+            edilmesi.Protokol yoksa
+            TPL den talep edilebilir.
+        </li>
+        <li id="item10" aria-disabled="true">Aracın Corel Draw’ni(BANF) araç dosyasına indirme
+            \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus
+        </li>
+        <li id="item11" aria-disabled="true">Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
+            indirme
+            \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen
+        </li>
+        <li id="item12" aria-disabled="true"> Araç klasöründen aracın 3D-datasını çekme
+            \\mntrankflsv18\BAT-GATE\07 Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF
+        </li>
+        <li id="item13" aria-disabled="true">EBR-T klasöründe referans araçların dosyalarının incelenmesi.
 
-            </li>
-            <li id="item14" aria-disabled="true"> Data açıldığında Makrolar kısmından eksik satış gruplarının
-                çıkarıldığı
-                makronun
-                çalıştırılması ve mail
-                olarak gelen excelde çıkan satış gruplarının GEP ten indirilip araca eklenmesi.
-            </li>
-            <li id="item15" aria-disabled="true"> Hata rapor sunumunun hazırlanması.
-            </li>
-        </ul>
+        </li>
+        <li id="item14" aria-disabled="true"> Data açıldığında Makrolar kısmından eksik satış gruplarının
+            çıkarıldığı
+            makronun
+            çalıştırılması ve mail
+            olarak gelen excelde çıkan satış gruplarının GEP ten indirilip araca eklenmesi.
+        </li>
+        <li id="item15" aria-disabled="true"> Hata rapor sunumunun hazırlanması.
+        </li>
+        <li aria-disabled="true" class="araba"> <label> Send from: </label> <input type="email" name="email"
+                placeholder="Email Address" required> <button type="submit" class="btn" id="submitbtn"
+                onclick="alert('Mail Sended')">Submit </button></li>
+    </ul>
+
+
+    <br> <br>
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_autoresponse" value="you did it">
+    <input type="hidden" name="_next" value="http://127.0.0.1:5500/thanks.html">
+
     </form>
 
 
@@ -215,31 +285,6 @@
     </footer> -->
 
     <script>
-        // Create a "close" button and append it to each list item
-        // var myNodelist = document.getElementsByTagName("LI");
-        //var i;
-        // for (i = 0; i < myNodelist.length; i++) {
-        //     var span = document.createElement("SPAN");
-        //     var txt = document.createTextNode("\u00D7");
-        //      span.className = "close";
-        //      span.appendChild(txt);
-        //myNodelist[i].appendChild(span);
-        // }
-
-        // Click on a close button to hide the current list item
-        // var close = document.getElementsByClassName("close");
-        // var i;
-        // for (i = 0; i < close.length; i++) {
-        //     close[i].onclick = function () {
-        //         var div = this.parentElement;
-        //         div.style.display = "none";
-        //      }
-        //   }
-        let aman = document.querySelector('li');
-        let saman = aman.nextElementSibling;
-        console.log(saman);
-        // Add a "checked" symbol when clicking on a list item
-        var i;
         var list = document.querySelector('ul');
         var hidecontent = document.querySelectorAll('li');
         let current = document.querySelector('li');
@@ -248,12 +293,10 @@
             if (ev.target.tagName == 'LI') {
                 ev.target.classList.toggle('checked');
                 document.getElementById("ctrl").hidden = false;
-                var amman = ev.target.nextElementSibling;
-                // amman.classList.toggle('enabled');
-                amman.setAttribute('aria-disabled', 'false');
-                //ev.target.nextElementSibling.classList.toggle('enable');
-                //  ev.current.nextElementSibling.classList.toggle("disabled");
-                console.log(ev.target.nextElementSibling);
+                var alanac = ev.target.nextElementSibling;
+                alanac.setAttribute('aria-disabled', 'false');
+                var alaniac = document.getElementById("submitbtn");
+
             }
         }, false);
 
