@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        /* roboto-regular - latin */
+        @font-face {
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 400;
+            src: url("../fonts/roboto-v29-latin-regular.eot");
+            /* IE9 Compat Modes */
+            src: local(""),
+                url("../fonts/roboto-v29-latin-regular.eot?#iefix") format("embedded-opentype"),
+                /* IE6-IE8 */
+                url("../fonts/roboto-v29-latin-regular.woff2") format("woff2"),
+                /* Super Modern Browsers */
+                url("../fonts/roboto-v29-latin-regular.woff") format("woff"),
+                /* Modern Browsers */
+                url("../fonts/roboto-v29-latin-regular.ttf") format("truetype"),
+                /* Safari, Android, iOS */
+                url("../fonts/roboto-v29-latin-regular.svg#Roboto") format("svg");
+            /* Legacy iOS 
+    */
+        }
+
+
+        body {
+            margin: 0;
+            min-width: 250px;
+            background: #273057;
+        }
+
+        /* Include the padding and border in an element's total width and height */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Remove margins and padding from the list */
+        ul {
+            margin: 0;
+            padding: 0;
+            font-family: "MANEurope", Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* Style the list items */
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+
+        }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        ul li:nth-child(odd) {
+            background: #70767d;
+        }
+
+        /* Darker background-color on hover */
+        ul li:hover {
+            background: #70767d;
+            ;
+        }
+
+        /* When clicked on, add a background color and strike out text */
+        ul li.checked {
+            background: #273057;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        /* Add a "checked" mark when clicked on */
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: #273057;
+            padding: 10px 40px;
+            color: white;
+            text-align: center;
+        }
+
+        footer {
+            display: flex;
+            bottom: 0;
+            margin-top: 50px;
+        }
+
+        .logo {
+            display: flex;
+            margin: 0 auto;
+            width: 300px;
+        }
+
+        input[type=file] {
+            padding-left: 400px;
+            font-size: 15px;
+        }
+
+        [aria-disabled="true"] {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myDIV" class="header">
+        <img class="logo" src="/images/logo.png" alt="MAN" />
+    </div>
+    <form>
+        <ul id="myUL">
+            <li name="item1" id="item1"> AE49A Maskesine gidip toplam araç sayısını öğrenme
+            </li>
+
+            <li name="item2" id="item2" aria-disabled="true"> AA19A dan LUB numarasını öğrenme (Host)
+                <br>
+                <input type="file" hidden id="ctrl" multiple
+                    accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+            </li>
+
+            <li id="item3" aria-disabled="true">AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
+                T:Türkiye)
+                ek olarak AP70A dan aracın solo veya körüklü olup olmadığını, kaç kapılı olduğunu öğrenme. </li>
+            <li id="item4" aria-disabled="true">T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
+                aracı
+                süzerek öğrenme
+            </li>
+            <li id="item5" aria-disabled="true">Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
+                beigestellt(müşteri
+                gönderisi) parçalarının
+                eklerde yok ise talep edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak sadece CATP
+                araçlarında Angebotszeichnung ECON'daki eklerde yok ise, talep edilmelidir. LUB ile Angebotszeichnung
+                uyumlu
+                olmalıdır.
+            </li>
+            <li id="item6" aria-disabled="true">Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
+                değişiklikleri
+                görme
+            </li>
+            <li id="item7" aria-disabled="true">Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
+                beraber
+                incelenip
+                KBV çalışanı ile
+                TPL yorumları arasında uyum kontrolünün yapılması
+                \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung Bus\Blaue Punkte
+            </li>
+            <li id="item8" aria-disabled="true">Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
+                klasörünün
+                kontrol
+                edilmesi.
+                TPL den onaylı Angebot drawing talep edilmelidir.
+            </li>
+            <li id="item9" aria-disabled="true">In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
+                tarafından
+                kontrol
+                edilmesi.Protokol yoksa
+                TPL den talep edilebilir.
+            </li>
+            <li id="item10" aria-disabled="true">Aracın Corel Draw’ni(BANF) araç dosyasına indirme
+                \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus
+            </li>
+            <li id="item11" aria-disabled="true">Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
+                indirme
+                \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen
+            </li>
+            <li id="item12" aria-disabled="true"> Araç klasöründen aracın 3D-datasını çekme
+                \\mntrankflsv18\BAT-GATE\07 Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF
+            </li>
+            <li id="item13" aria-disabled="true">EBR-T klasöründe referans araçların dosyalarının incelenmesi.
+
+            </li>
+            <li id="item14" aria-disabled="true"> Data açıldığında Makrolar kısmından eksik satış gruplarının
+                çıkarıldığı
+                makronun
+                çalıştırılması ve mail
+                olarak gelen excelde çıkan satış gruplarının GEP ten indirilip araca eklenmesi.
+            </li>
+            <li id="item15" aria-disabled="true"> Hata rapor sunumunun hazırlanması.
+            </li>
+        </ul>
+    </form>
+
+
+    <!-- <footer>
+        <img class="logo" src="/images/logo.png" alt="MAN" />
+    </footer> -->
+
+    <script>
+        // Create a "close" button and append it to each list item
+        // var myNodelist = document.getElementsByTagName("LI");
+        //var i;
+        // for (i = 0; i < myNodelist.length; i++) {
+        //     var span = document.createElement("SPAN");
+        //     var txt = document.createTextNode("\u00D7");
+        //      span.className = "close";
+        //      span.appendChild(txt);
+        //myNodelist[i].appendChild(span);
+        // }
+
+        // Click on a close button to hide the current list item
+        // var close = document.getElementsByClassName("close");
+        // var i;
+        // for (i = 0; i < close.length; i++) {
+        //     close[i].onclick = function () {
+        //         var div = this.parentElement;
+        //         div.style.display = "none";
+        //      }
+        //   }
+        let aman = document.querySelector('li');
+        let saman = aman.nextElementSibling;
+        console.log(saman);
+        // Add a "checked" symbol when clicking on a list item
+        var i;
+        var list = document.querySelector('ul');
+        var hidecontent = document.querySelectorAll('li');
+        let current = document.querySelector('li');
+        let nextSibling = current.nextElementSibling;
+        list.addEventListener('click', function (ev) {
+            if (ev.target.tagName == 'LI') {
+                ev.target.classList.toggle('checked');
+                document.getElementById("ctrl").hidden = false;
+                var amman = ev.target.nextElementSibling;
+                // amman.classList.toggle('enabled');
+                amman.setAttribute('aria-disabled', 'false');
+                //ev.target.nextElementSibling.classList.toggle('enable');
+                //  ev.current.nextElementSibling.classList.toggle("disabled");
+                console.log(ev.target.nextElementSibling);
+            }
+        }, false);
+
+
+    </script>
+
+</body>
+
+</html>
