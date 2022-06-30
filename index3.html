@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-64/man-truck-3441617-2874386.png"
+        type="image/x-icon" sizes="64x64" />
+    <title>EBOQ-T Araç Kapatma Sistemi</title>
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            margin: 20px;
+            color: #435757;
+            background: linear-gradient(-20deg, #d0b782 20%, #a0cecf 80%);
+            font: 500 1.2em/1.2 'Roboto', sans-serif;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            border-top: 5px solid #435757;
+            background-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+            user-select: none;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, .4);
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            counter-reset: done-items undone-items;
+        }
+
+        h2 {
+            position: relative;
+            margin: 0;
+            padding: 10px 0;
+            font-size: 1.2em;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: -20px;
+            width: 5px;
+            background-color: #435757;
+        }
+
+        h2::after {
+            display: block;
+            float: right;
+            font-weight: normal;
+        }
+
+        .done {
+            order: 1;
+        }
+
+        .done::after {
+            content: ' (' counter(done-items) ')';
+        }
+
+        .undone {
+            order: 3;
+        }
+
+        .undone::after {
+            content: ' (' counter(undone-items) ')';
+        }
+
+        /* hide inputs offscreen, but at the same vertical positions as the correpsonding labels, so that tabbing scrolls the viewport as expected */
+        input {
+            display: block;
+            height: 53px;
+            margin: 0 0 -53px -9999px;
+            order: 4;
+            outline: none;
+            counter-increment: undone-items;
+        }
+
+        input:checked {
+            order: 2;
+            counter-increment: done-items;
+        }
+
+        label {
+            display: block;
+            position: relative;
+            padding: 15px 0 15px 45px;
+            border-top: 1px dashed #fff;
+            order: 4;
+            cursor: pointer;
+            animation: undone .5s;
+            font-size: 4px;
+        }
+
+        label::before {
+            content: '\f10c';
+            /* circle outline */
+            display: block;
+            position: absolute;
+            top: 11px;
+            left: 10px;
+            font: 1.5em 'FontAwesome';
+        }
+
+        label:hover,
+        input:focus+label {
+            background-color: rgba(255, 255, 255, .2);
+        }
+
+        input:checked+label {
+            order: 2;
+            animation: done .5s;
+        }
+
+        input:checked+label::before {
+            content: '\f058';
+            /* circle checkmark */
+        }
+
+        @keyframes done {
+            0% {
+                opacity: 0;
+                background-color: rgba(255, 255, 255, .4);
+                transform: translateY(20px);
+            }
+
+            50% {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, .4);
+            }
+        }
+
+        @keyframes undone {
+            0% {
+                opacity: 0;
+                background-color: rgba(255, 255, 255, .4);
+                transform: translateY(-20px);
+            }
+
+            50% {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, .4);
+            }
+        }
+      
+    </style>
+
+<body>
+    <!--
+  Checkbox Trickery with CSS:
+  http://codersblock.com/blog/checkbox-trickery-with-css/ 
+-->
+
+    <div class="container">
+        <h1>EBOQ-T Car Check</h1>
+        <div class="items">
+            <input id="item1" type="checkbox" >
+            <label for="item1"> AE49A Maskesine gidip toplam araç sayısını öğrenme</label>
+
+            <input id="item2" type="checkbox">
+            <label for="item2">AA19A dan LUB numarasını öğrenme (Host)</label>
+
+            <input id="item3" type="checkbox">
+            <label for="item3">AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
+                T:Türkiye)
+                ek olarak AP70A dan aracın solo veya körüklü olup olmadığını, kaç kapılı olduğunu öğrenme.</label>
+
+            <input id="item4" type="checkbox">
+            <label for="item4">T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
+                aracı
+                süzerek öğrenme</label>
+
+            <input id="item5" type="checkbox">
+            <label for="item5">Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
+                beigestellt(müşteri
+                gönderisi) parçalarının
+                eklerde yok ise talep edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak sadece CATP
+                araçlarında Angebotszeichnung ECON'daki eklerde yok ise, talep edilmelidir. LUB ile Angebotszeichnung
+                uyumlu
+                olmalıdır.</label>
+
+            <input id="item6" type="checkbox">
+            <label for="item6">Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
+                değişiklikleri
+                görme</label>
+
+            <input id="item7" type="checkbox">
+            <label for="item7">EMavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
+                beraber
+                incelenip
+                KBV çalışanı ile
+                TPL yorumları arasında uyum kontrolünün yapılması
+                \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung Bus\Blaue Punkte</label>
+
+            <input id="item8" type="checkbox">
+            <label for="item8">Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
+                klasörünün
+                kontrol
+                edilmesi.
+                TPL den onaylı Angebot drawing talep edilmelidir.</label>
+
+            <input id="item9" type="checkbox">
+            <label for="item9">In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
+                tarafından
+                kontrol
+                edilmesi.Protokol yoksa
+                TPL den talep edilebilir.</label>
+
+            <input id="item10" type="checkbox">
+            <label for="item10">Aracın Corel Draw’ni(BANF) araç dosyasına indirme
+                \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus</label>
+
+            <input id="item11" type="checkbox">
+            <label for="item11">Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
+                indirme
+                \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen</label>
+
+            <input id="item12" type="checkbox">
+            <label for="item12">Araç klasöründen aracın 3D-datasını çekme
+                \\mntrankflsv18\BAT-GATE\07 Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF</label>
+
+            <input id="item13" type="checkbox">
+            <label for="item13">EBR-T klasöründe referans araçların dosyalarının incelenmesi.
+            </label>
+
+            <input id="item14" type="checkbox">
+            <label for="item14">Data açıldığında Makrolar kısmından eksik satış gruplarının
+                çıkarıldığı
+                makronun
+                çalıştırılması ve mail
+                olarak gelen excelde çıkan satış gruplarının GEP ten indirilip araca eklenmesi.</label>
+
+            <input id="item15" type="checkbox">
+            <label for="item15"> Hata rapor sunumunun hazırlanması.</label>
+            
+           
+            <h2 class="done" aria-hidden="true">Done</h2>
+            <h2 class="undone" aria-hidden="true">Not Done</h2>
+        </div>
+        
+    </div>
+</body>
+
+
+</head>
