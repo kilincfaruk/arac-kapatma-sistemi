@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+      type="text/css"
+    />
     <link
       rel="shortcut icon"
       href="https://cdn.iconscout.com/icon/free/png-64/man-truck-3441617-2874386.png"
@@ -123,6 +130,54 @@
         display: flex;
         margin: 0 auto;
         width: 150px;
+        animation: myAnim 1s linear 0s 1 alternate-reverse both;
+      }
+
+      @keyframes myAnim {
+        0% {
+          animation-timing-function: ease-out;
+          transform: scale(1);
+        }
+
+        5% {
+          animation-timing-function: ease-in;
+          transform: scale(0.95);
+        }
+
+        15% {
+          animation-timing-function: ease-out;
+          transform: scale(1);
+        }
+
+        25% {
+          animation-timing-function: ease-in;
+          transform: scale(0.84);
+        }
+
+        38% {
+          animation-timing-function: ease-out;
+          transform: scale(1);
+        }
+
+        52% {
+          animation-timing-function: ease-in;
+          transform: scale(0.7);
+        }
+
+        70% {
+          animation-timing-function: ease-out;
+          transform: scale(1);
+        }
+
+        85% {
+          opacity: 1;
+        }
+
+        100% {
+          animation-timing-function: ease-in;
+          opacity: 0;
+          transform: scale(0);
+        }
       }
 
       .logo:hover {
@@ -195,12 +250,96 @@
       li.araba button.btn {
         cursor: pointer;
       }
+
+      #progress-bar-container {
+        background-color: #273057;
+        width: 100%;
+        border-radius: 25px;
+        margin-top: 20px;
+        opacity: 0.8;
+        outline: solid;
+      }
+
+      #progress-bar {
+        background-color: #e40444;
+        height: 20px;
+        transition: width 0.5s linear;
+        width: 0%;
+        border-radius: 25px;
+      }
+
+      #progress-bar.six {
+        width: 6%;
+      }
+
+      #progress-bar.twelve {
+        width: 12%;
+      }
+
+      #progress-bar.eighteen {
+        width: 18%;
+      }
+
+      #progress-bar.twentyfour {
+        width: 24%;
+      }
+
+      #progress-bar.thirty {
+        width: 30%;
+      }
+
+      #progress-bar.thirtysix {
+        width: 36%;
+      }
+
+      #progress-bar.fourtytwo {
+        width: 42%;
+      }
+
+      #progress-bar.fourtyeight {
+        width: 48%;
+      }
+
+      #progress-bar.fiftyfour {
+        width: 54%;
+      }
+
+      #progress-bar.sixty {
+        width: 60%;
+      }
+
+      #progress-bar.sixtysix {
+        width: 66%;
+      }
+
+      #progress-bar.seventytwo {
+        width: 72%;
+      }
+
+      #progress-bar.seventyeight {
+        width: 78%;
+      }
+
+      #progress-bar.eightyfour {
+        width: 84%;
+      }
+
+      #progress-bar.ninety {
+        width: 90%;
+      }
+
+      #progress-bar.full {
+        width: 100%;
+      }
     </style>
   </head>
 
   <body>
     <div id="myDIV" class="header">
       <img class="logo" src="/images/logo.png" alt="MAN" />
+      <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+      </div>
     </div>
     <form
       action="https://formsubmit.co/82892438d22f8ea58ab0276daadb189c"
@@ -209,13 +348,21 @@
       enctype="multipart/form-data"
     >
       <ul id="myUL">
-        <li name="item1" id="item1">
+        <li
+          name="item1"
+          id="item1"
+          onclick="document.getElementById('progress-bar').className += ' six'"
+        >
           AE49A Maskesine gidip toplam araç sayısını öğrenme
         </li>
 
-        <li name="item2" id="item2" aria-disabled="true">
+        <li
+          name="item2"
+          id="item2"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' twelve'"
+        >
           AA19A dan LUB numarasını öğrenme (Host)
-          <br />
           <input
             type="file"
             hidden
@@ -226,18 +373,38 @@
           />
         </li>
 
-        <li id="item3" aria-disabled="true">
+        <li
+          id="item3"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' eighteen'"
+        >
           AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
           T:Türkiye) ek olarak AP70A dan aracın solo veya körüklü olup
           olmadığını, kaç kapılı olduğunu öğrenme.
         </li>
 
-        <li id="item4" aria-disabled="true">
+        <li
+          id="item4"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' twentyfour'"
+        >
           T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
           aracı süzerek öğrenme
+          <input
+            type="file"
+            hidden
+            id="ctrl1"
+            name="attachment"
+            required
+            multiple
+          />
         </li>
 
-        <li id="item5" aria-disabled="true">
+        <li
+          id="item5"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' thirty'"
+        >
           Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
           beigestellt(müşteri gönderisi) parçalarının eklerde yok ise talep
           edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak
@@ -245,59 +412,99 @@
           talep edilmelidir. LUB ile Angebotszeichnung uyumlu olmalıdır.
         </li>
 
-        <li id="item6" aria-disabled="true">
+        <li
+          id="item6"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' thirtysix'"
+        >
           Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
           değişiklikleri görme.
         </li>
 
-        <li id="item7" aria-disabled="true">
+        <li
+          id="item7"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' fourtytwo'"
+        >
           Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
           beraber incelenip KBV çalışanı ile TPL yorumları arasında uyum
           kontrolünün yapılması \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung
           Bus\Blaue Punkte
         </li>
 
-        <li id="item8" aria-disabled="true">
+        <li
+          id="item8"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' fourtyeight'"
+        >
           Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
           klasörünün kontrol edilmesi. TPL den onaylı Angebot drawing talep
           edilmelidir.
         </li>
 
-        <li id="item9" aria-disabled="true">
+        <li
+          id="item9"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' fiftyfour'"
+        >
           In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
           tarafından kontrol edilmesi.Protokol yoksa TPL den talep edilebilir.
         </li>
 
-        <li id="item10" aria-disabled="true">
+        <li
+          id="item10"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' sixty'"
+        >
           Aracın Corel Draw’ni(BANF) araç dosyasına indirme
           \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus
         </li>
 
-        <li id="item11" aria-disabled="true">
+        <li
+          id="item11"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' sixtysix'"
+        >
           Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
           indirme \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen
         </li>
 
-        <li id="item12" aria-disabled="true">
+        <li
+          id="item12"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' seventytwo'"
+        >
           Araç klasöründen aracın 3D-datasını çekme \\mntrankflsv18\BAT-GATE\07
           Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF
         </li>
 
-        <li id="item13" aria-disabled="true">
+        <li
+          id="item13"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' seventyeight'"
+        >
           EBR-T klasöründe referans araçların dosyalarının incelenmesi.
         </li>
 
-        <li id="item14" aria-disabled="true">
+        <li
+          id="item14"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' eightyfour'"
+        >
           Data açıldığında Makrolar kısmından eksik satış gruplarının
           çıkarıldığı makronun çalıştırılması ve mail olarak gelen excelde çıkan
           satış gruplarının GEP ten indirilip araca eklenmesi.
         </li>
 
-        <li id="item15" aria-disabled="true">
+        <li
+          id="item15"
+          aria-disabled="true"
+          onclick="document.getElementById('progress-bar').className += ' full'"
+        >
           Hata rapor sunumunun hazırlanması.
         </li>
 
-        <li aria-disabled="true" class="araba">
+        <li id="item16" aria-disabled="true" class="araba">
           <label> Send from: </label>
           <input
             type="email"
@@ -321,11 +528,21 @@
       />
     </form>
 
+    <button
+      onclick="document.getElementById('progress-bar').className += ' full'"
+      style="visibility: hidden"
+    >
+      Click Me
+    </button>
     <script>
       var list = document.querySelector("ul");
       var hidecontent = document.querySelectorAll("li");
       let current = document.querySelector("li");
       let nextSibling = current.nextElementSibling;
+
+      var value = 0,
+        tb = document.getElementById("tb"),
+        progress = document.getElementById("progressbar");
 
       list.addEventListener(
         "click",
