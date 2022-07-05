@@ -1,506 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To DO List</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-    />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap");
 
-      * {
-        margin: 0;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To DO List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap");
 
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 50px;
-        background-color: #e1e3ea;
-        height: 100vh;
-        font-family: sans-serif;
-      }
+    * {
+      margin: 0
+    }
 
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+      background-color: #e1e3ea;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .app {
+      width: 60%;
+    }
+
+    @media (max-width:768px) {
       .app {
-        width: 60%;
-      }
-
-      @media (max-width: 768px) {
-        .app {
-          width: 90%;
-        }
-      }
-
-      .app h1 {
-        color: white;
-        font-size: 40px;
-        padding: 10px 0;
-        text-align: center;
-        border-radius: 0.5rem 0.5rem 0 0;
-        background-color: #de3f53;
-        font-family: "Rajdhani", sans-serif;
-      }
-
-      .app form {
-        display: flex;
-        width: 100%;
-        background-color: #262e4c;
-      }
-
-      .app form input {
-        border: none;
-        background-color: #3c4979;
-        font-size: 18px;
-        color: white;
-        padding: 10px;
         width: 90%;
       }
+    }
 
-      .app form button {
-        border: none;
-        color: white;
-        background-color: #1dd2af;
-        font-size: 25px;
-        font-weight: 600;
-        height: 42px;
-        width: 10%;
-      }
+    .app h1 {
+      color: white;
+      font-size: 40px;
+      padding: 10px 0;
+      text-align: center;
+      border-radius: .5rem .5rem 0 0;
+      background-color: #de3f53;
+      font-family: "Rajdhani", sans-serif;
+    }
 
-      .app ul {
-        list-style: none;
-        color: #e0e0e0;
-        padding: 0;
-      }
+    .app form {
+      display: flex;
+      width: 100%;
+      background-color: #262e4c;
+    }
 
-      .app ul li {
-        padding: 10px;
-        background-color: #262e4c;
-        border-bottom: 1px solid #3a4674;
-        height: 45px;
-      }
-      
-      input[type="text"] {
-        padding: 10px 25px;
-        font-size: 12px;
-        border-radius: 0px 10px 10px 0px;
-        border: none;
-        display: flexbox;
-        flex-direction: column;
-        
-        
-      }
+    .app form input {
+      border: none;
+      background-color: #3c4979;
+      font-size: 18px;
+      color: white;
+      padding: 10px;
+      width: 90%;
+    }
 
-      .check {
-        width: 0.8em;
-        height: 0.8em;
-        cursor: pointer;
-        border-radius: 50%;
-        background-color: white;
-        border: 1px solid rgb(255, 255, 255);
-        -webkit-appearance: none;
-      }
+    .app form button {
+      border: none;
+      color: white;
+      background-color: #1dd2af;
+      font-size: 25px;
+      font-weight: 600;
+      height: 42px;
+      width: 10%;
+    }
 
-      .check:checked {
-        background-color: #1dd2af;
-      }
+    .app ul {
+      list-style: none;
+      color: #e0e0e0;
+      padding: 0;
+    }
 
-      .task {
-        font-size: 12px;
-        padding: 0 10px;
-        width: 1000px;
-        height: 45px;
-        background: transparent;
-        color: #fff;
-        margin-bottom: 50px;
+    .app ul li {
+      padding: 10px;
+      background-color: #262e4c;
+      border-bottom: 1px solid #3a4674;
+    }
 
-      }
+    .check {
+      width: 0.8em;
+      height: 0.8em;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid rgb(255, 255, 255);
+      -webkit-appearance: none;
+    }
 
-      .task:focus {
-        outline: none;
-      }
+    .check:checked {
+      background-color: #1dd2af;
+    }
 
-      .app ul li i {
-        float: right;
-        cursor: pointer;
-      }
+    .task {
+      font-size: 18px;
+      padding: 0 10px;
+      width: fit-content;
+      background: transparent;
+      border: none;
+      color: #fff;
+    }
 
-      .app ul li i:hover {
-        color: rgb(255, 82, 82);
-      }
+    .task:focus {
+      outline: none;
+    }
 
-      .completed {
-        color: rgba(192, 192, 192, 0.8);
-        text-decoration: line-through;
-      }
-    </style>
-  </head>
+    .app ul li i {
+      float: right;
+      cursor: pointer;
+    }
 
-  <body>
-    <div class="container">
-      <div class="app">
-        <h1>TO DO LIST</h1>
-        <!-- <form>
-          <input type="text" placeholder="Add new task..." />
-          <button type="submit">&plus;</button>
-        </form> -->
-        <ul>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value="AE49A Maskesine gidip toplam araç sayısını öğrenme"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" AA19A dan LUB numarasını öğrenme (Host)"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya, T:Türkiye) ek olarak AP70A dan aracın solo veya körüklü olup olmadığını, kaç kapılı olduğunu öğrenme."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen aracı süzerek öğrenme"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet beigestellt(müşteri gönderisi) parçalarının eklerde yok ise talep edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak sadece CATP araçlarında Angebotszeichnung ECON'daki eklerde yok ise, talep edilmelidir. LUB ile Angebotszeichnung uyumlu olmalıdır."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık değişiklikleri görme."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
+    .app ul li i:hover {
+      color: rgb(255, 82, 82);
+    }
 
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup beraber incelenip KBV çalışanı ile TPL yorumları arasında uyum kontrolünün yapılması \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung Bus\Blaue Punkte"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value="  Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck klasörünün kontrol edilmesi. TPL den onaylı Angebot drawing talep edilmelidir."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value="In check ve LUK protokolunun araç klasörüne koyulması ve gruplar tarafından kontrol edilmesi.Protokol yoksa TPL den talep edilebilir."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value="Aracın Corel Draw’ni(BANF) araç dosyasına indirme \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına indirme \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Araç klasöründen aracın 3D-datasını çekme \\mntrankflsv18\BAT-GATE\07 Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF"
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" EBR-T klasöründe referans araçların dosyalarının incelenmesi."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Data açıldığında Makrolar kısmından eksik satış gruplarının çıkarıldığı makronun çalıştırılması ve mail olarak gelen excelde çıkan satış gruplarının GEP ten indirilip araca eklenmesi."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onclick="taskComplete(this)"
-              class="check"
-              checked=""
-            />
-            <input
-              type="text"
-              value=" Hata rapor sunumunun hazırlanması."
-              class="task"
-              onfocus="getCurrentTask(this)"
-              onblur="editTask(this)"
-            />
-          </li>
-        </ul>
-        <button type="submit"> submit</button>
-      </div>
+    .completed {
+      color: rgba(192, 192, 192, 0.8);
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="app">
+      <h1>TO DO LIST</h1>
+      <form>
+        <input type="text" placeholder="Add new task...">
+        <button type="submit">&plus;</button>
+      </form>
+      <ul></ul>
     </div>
-    <script>
-      // On app load, get all tasks from localStorage
-      window.onload = loadTasks;
+  </div>
+  <script>
+    // On app load, get all tasks from localStorage
+    window.onload = loadTasks;
 
-      // On form submit add task
-      document.querySelector("form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        addTask();
-      });
+    // On form submit add task
+    document.querySelector("form").addEventListener("submit", e => {
+      e.preventDefault();
+      addTask();
+    });
 
-      function loadTasks() {
-        // check if localStorage has any tasks
-        // if not then return
-        if (localStorage.getItem("tasks") == null) return;
+    function loadTasks() {
+      // check if localStorage has any tasks
+      // if not then return
+      if (localStorage.getItem("tasks") == null) return;
 
-        // Get the tasks from localStorage and convert it to an array
-        let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+      // Get the tasks from localStorage and convert it to an array
+      let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
 
-        // Loop through the tasks and add them to the list
-        tasks.forEach((task) => {
-          const list = document.querySelector("ul");
-          const li = document.createElement("li");
-          li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${
-            task.completed ? "checked" : ""
-          }>
-          <input type="text" value="${task.task}" class="task ${
-            task.completed ? "completed" : ""
-          }" onfocus="getCurrentTask(this)" onblur="editTask(this)">
+      // Loop through the tasks and add them to the list
+      tasks.forEach(task => {
+        const list = document.querySelector("ul");
+        const li = document.createElement("li");
+        li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
+          <input type="text" value="${task.task}" class="task ${task.completed ? 'completed' : ''}" onfocus="getCurrentTask(this)" onblur="editTask(this)">
           <i class="fa fa-trash" onclick="removeTask(this)"></i>`;
-          list.insertBefore(li, list.children[0]);
-        });
+        list.insertBefore(li, list.children[0]);
+      });
+    }
+
+    function addTask() {
+      const task = document.querySelector("form input");
+      const list = document.querySelector("ul");
+      // return if task is empty
+      if (task.value === "") {
+        alert("Please add some task!");
+        return false;
+      }
+      // check is task already exist
+      if (document.querySelector(`input[value="${task.value}"]`)) {
+        alert("Task already exist!");
+        return false;
       }
 
-      function addTask() {
-        const task = document.querySelector("form input");
-        const list = document.querySelector("ul");
-        // return if task is empty
-        if (task.value === "") {
-          alert("Please add some task!");
-          return false;
-        }
-        // check is task already exist
-        if (document.querySelector(`input[value="${task.value}"]`)) {
-          alert("Task already exist!");
-          return false;
-        }
+      // add task to local storage
+      localStorage.setItem("tasks", JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { task: task.value, completed: false }]));
 
-        // add task to local storage
-        localStorage.setItem(
-          "tasks",
-          JSON.stringify([
-            ...JSON.parse(localStorage.getItem("tasks") || "[]"),
-            { task: task.value, completed: false },
-          ])
-        );
-
-        // create list item, add innerHTML and append to ul
-        const li = document.createElement("li");
-        li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check">
+      // create list item, add innerHTML and append to ul
+      const li = document.createElement("li");
+      li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check">
       <input type="text" value="${task.value}" class="task" onfocus="getCurrentTask(this)" onblur="editTask(this)">
       <i class="fa fa-trash" onclick="removeTask(this)"></i>`;
-        list.insertBefore(li, list.children[0]);
-        // clear input
-        task.value = "";
+      list.insertBefore(li, list.children[0]);
+      // clear input
+      task.value = "";
+    }
+
+    function taskComplete(event) {
+      let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+      tasks.forEach(task => {
+        if (task.task === event.nextElementSibling.value) {
+          task.completed = !task.completed;
+        }
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      event.nextElementSibling.classList.toggle("completed");
+    }
+
+    function removeTask(event) {
+      let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+      tasks.forEach(task => {
+        if (task.task === event.parentNode.children[1].value) {
+          // delete task
+          tasks.splice(tasks.indexOf(task), 1);
+        }
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      event.parentElement.remove();
+    }
+
+    // store current task to track changes
+    var currentTask = null;
+
+    // get current task
+    function getCurrentTask(event) {
+      currentTask = event.value;
+    }
+
+    // edit the task and update local storage
+    function editTask(event) {
+      let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+      // check if task is empty
+      if (event.value === "") {
+        alert("Task is empty!");
+        event.value = currentTask;
+        return;
       }
-
-      function taskComplete(event) {
-        let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
-        tasks.forEach((task) => {
-          if (task.task === event.nextElementSibling.value) {
-            task.completed = !task.completed;
-          }
-        });
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-        event.nextElementSibling.classList.toggle("completed");
-      }
-
-      function removeTask(event) {
-        let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
-        tasks.forEach((task) => {
-          if (task.task === event.parentNode.children[1].value) {
-            // delete task
-            tasks.splice(tasks.indexOf(task), 1);
-          }
-        });
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-        event.parentElement.remove();
-      }
-
-      // store current task to track changes
-      var currentTask = null;
-
-      // get current task
-      function getCurrentTask(event) {
-        currentTask = event.value;
-      }
-
-      // edit the task and update local storage
-      function editTask(event) {
-        let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
-        // check if task is empty
-        if (event.value === "") {
-          alert("Task is empty!");
+      // task already exist
+      tasks.forEach(task => {
+        if (task.task === event.value) {
+          alert("Task already exist!");
           event.value = currentTask;
           return;
         }
-        // task already exist
-        tasks.forEach((task) => {
-          if (task.task === event.value) {
-            alert("Task already exist!");
-            event.value = currentTask;
-            return;
-          }
-        });
-        // update task
-        tasks.forEach((task) => {
-          if (task.task === currentTask) {
-            task.task = event.value;
-          }
-        });
-        // update local storage
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-      }
-    </script>
-  </body>
+      });
+      // update task
+      tasks.forEach(task => {
+        if (task.task === currentTask) {
+          task.task = event.value;
+        }
+      });
+      // update local storage
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  </script>
+</body>
+
 </html>
