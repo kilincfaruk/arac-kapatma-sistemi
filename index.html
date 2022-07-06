@@ -1,562 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
-      type="text/css"
-    />
-    <link
-      rel="shortcut icon"
-      href="https://cdn.iconscout.com/icon/free/png-64/man-truck-3441617-2874386.png"
-      type="image/x-icon"
-      sizes="64x64"
-    />
-    <title>EBOQ-T Araç Kapatma Sistemi</title>
-    <style>
-      @font-face {
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 400;
-        src: url("../fonts/roboto-v29-latin-regular.eot");
-        /* IE9 Compat Modes */
-        src: local(""),
-          url("../fonts/roboto-v29-latin-regular.eot?#iefix")
-            format("embedded-opentype"),
-          /* IE6-IE8 */ url("../fonts/roboto-v29-latin-regular.woff2")
-            format("woff2"),
-          /* Super Modern Browsers */
-            url("../fonts/roboto-v29-latin-regular.woff") format("woff"),
-          /* Modern Browsers */ url("../fonts/roboto-v29-latin-regular.ttf")
-            format("truetype"),
-          /* Safari, Android, iOS */
-            url("../fonts/roboto-v29-latin-regular.svg#Roboto") format("svg");
-        /* Legacy iOS 
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+  <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-64/man-truck-3441617-2874386.png"
+    type="image/x-icon" sizes="64x64" />
+  <title>EBOQ-T Araç Kapatma Sistemi</title>
+  <style>
+    @font-face {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      src: url("../fonts/roboto-v29-latin-regular.eot");
+      /* IE9 Compat Modes */
+      src: local(""),
+        url("../fonts/roboto-v29-latin-regular.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../fonts/roboto-v29-latin-regular.woff2") format("woff2"),
+        /* Super Modern Browsers */
+        url("../fonts/roboto-v29-latin-regular.woff") format("woff"),
+        /* Modern Browsers */
+        url("../fonts/roboto-v29-latin-regular.ttf") format("truetype"),
+        /* Safari, Android, iOS */
+        url("../fonts/roboto-v29-latin-regular.svg#Roboto") format("svg");
+      /* Legacy iOS 
     */
+    }
+
+    .custom-file-input~.custom-file-label::after {
+      content: "Your custom text ...";
+    }
+
+    body {
+      margin: 0;
+      min-width: 250px;
+      background: #303C49;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      font-family: "MANEurope", Helvetica, Roboto, Arial, sans-serif;
+    }
+
+    ul li {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      list-style-type: none;
+      background: rgb(75, 150, 210);
+      font-size: 13px;
+      transition: 0.2s;
+      border: 2px 2px 2px 0.5px solid rgb(175, 175, 175);
+      border-top-style: 0.5px solid rgb(175, 175, 175);
+      border-right-style: 0.5pxsolid rgb(175, 175, 175);
+      border-bottom-style: none;
+      border-left-style: 0.5px solid rgb(175, 175, 175);
+      margin-top: 0.5px;
+      margin: 10px;
+      border-radius: 25px;
+      color: #fff;
+    }
+
+    ul li:nth-child(odd) {
+      background: rgb(175, 175, 175);
+    }
+
+    ul li:nth-child(odd):hover {
+      background: #303C49;
+    }
+
+    ul li:hover {
+      background: rgb(175, 175, 175);
+    }
+
+    ul li.checked {
+      background: #303C49;
+      color: #fff;
+      text-decoration: line-through;
+      opacity: 0.4;
+    }
+
+    ul li.checked::before {
+      content: "";
+      position: absolute;
+      border-color: #fff;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      top: 10px;
+      left: 16px;
+      transform: rotate(45deg);
+      height: 15px;
+      width: 7px;
+    }
+
+    .header {
+      background-color: #303C49;
+      padding: 10px 40px;
+      color: white;
+      text-align: center;
+    }
+
+    footer {
+      display: flex;
+      bottom: 0;
+      margin-top: 50px;
+    }
+
+    .logo {
+      display: flex;
+      margin: 0 auto;
+      width: 150px;
+      animation: myAnim 1s linear 0s 1 alternate-reverse both;
+    }
+
+    @keyframes myAnim {
+      0% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
       }
 
-      .custom-file-input ~ .custom-file-label::after {
-        content: "Your custom text ...";
+      5% {
+        animation-timing-function: ease-in;
+        transform: scale(0.95);
       }
 
-      body {
-        margin: 0;
-        min-width: 250px;
-        background: #303C49;
+      15% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
       }
 
-      * {
-        box-sizing: border-box;
+      25% {
+        animation-timing-function: ease-in;
+        transform: scale(0.84);
       }
 
-      ul {
-        margin: 0;
-        padding: 0;
-        font-family: "MANEurope", Helvetica, Roboto, Arial, sans-serif;
+      38% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
       }
 
-      ul li {
-        cursor: pointer;
-        position: relative;
-        padding: 12px 8px 12px 40px;
-        list-style-type: none;
-        background: rgb(75, 150, 210);
-        font-size: 13px;
-        transition: 0.2s;
-        border: 2px 2px 2px 0.5px solid rgb(175, 175, 175);
-        border-top-style: 0.5px solid rgb(175, 175, 175);
-        border-right-style: 0.5pxsolid rgb(175, 175, 175);
-        border-bottom-style: none;
-        border-left-style: 0.5px solid rgb(175, 175, 175);
-        margin-top: 0.5px;
-        margin: 10px;
-        border-radius: 25px;
-        color: #fff;
+      52% {
+        animation-timing-function: ease-in;
+        transform: scale(0.7);
       }
 
-      ul li:nth-child(odd) {
-        background: rgb(175, 175, 175);
+      70% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
       }
 
-      ul li:nth-child(odd):hover {
-        background: #303C49;
+      85% {
+        opacity: 1;
       }
 
-      ul li:hover {
-        background: rgb(175, 175, 175);
+      100% {
+        animation-timing-function: ease-in;
+        opacity: 0;
+        transform: scale(0);
       }
+    }
 
-      ul li.checked {
-        background: #303C49;
-        color: #fff;
-        text-decoration: line-through;
-        opacity: 0.4;
-      }
+    .logo:hover {
+      display: flex;
+      margin: 0 auto;
+      width: 150px;
+      filter: drop-shadow(1px 1px 10px rgb(175, 175, 175));
+    }
 
-      ul li.checked::before {
-        content: "";
-        position: absolute;
-        border-color: #fff;
-        border-style: solid;
-        border-width: 0 2px 2px 0;
-        top: 10px;
-        left: 16px;
-        transform: rotate(45deg);
-        height: 15px;
-        width: 7px;
-      }
+    input[type="file"] {
+      padding-left: 400px;
+      font-size: 15px;
+    }
 
-      .header {
-        background-color: #303C49;
-        padding: 10px 40px;
-        color: white;
-        text-align: center;
-      }
+    [aria-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.6;
+    }
 
-      footer {
-        display: flex;
-        bottom: 0;
-        margin-top: 50px;
-      }
+    button {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 15px;
+      background-color: #a3a4a6;
+      color: #fff;
+      margin: auto;
+      margin-top: 10px;
+      font-size: 18px;
+      border: 0.5px solid transparent;
+      border-radius: 10px;
+      background-color: #e40444;
+      text-align: center;
+    }
 
-      .logo {
-        display: flex;
-        margin: 0 auto;
-        width: 150px;
-        animation: myAnim 1s linear 0s 1 alternate-reverse both;
-      }
+    li label {
+      display: flexbox;
+      flex-direction: column;
+      padding: 10px;
+      background-color: #a3a4a6;
+      color: #fff;
+      margin: auto;
+      margin-top: 150px;
+      font-size: 12px;
+      border: 0px transparent;
+      border-radius: 10px 0px 0px 10px;
+      background-color: #E40045;
+      text-align: center;
+    }
 
-      @keyframes myAnim {
-        0% {
-          animation-timing-function: ease-out;
-          transform: scale(1);
-        }
+    input[type="email"] {
+      padding: 10px 25px;
+      font-size: 12px;
+      border-radius: 0px 10px 10px 0px;
+      border: none;
+    }
 
-        5% {
-          animation-timing-function: ease-in;
-          transform: scale(0.95);
-        }
+    li.araba {
+      background: transparent;
+      border: none;
+      cursor: default;
+      display: block;
+      flex-direction: row;
+      align-items: center;
+    }
 
-        15% {
-          animation-timing-function: ease-out;
-          transform: scale(1);
-        }
+    li.araba:hover {
+      background: transparent;
+    }
 
-        25% {
-          animation-timing-function: ease-in;
-          transform: scale(0.84);
-        }
+    li.araba button.btn {
+      cursor: pointer;
+    }
 
-        38% {
-          animation-timing-function: ease-out;
-          transform: scale(1);
-        }
+    #progress-bar-container {
+      background-color: #303C49;
+      width: 100%;
+      border-radius: 25px;
+      margin-top: 20px;
+      opacity: 0.8;
+      outline: solid;
+    }
 
-        52% {
-          animation-timing-function: ease-in;
-          transform: scale(0.7);
-        }
+    #progress-bar {
+      background-color: #91B900;
+      height: 20px;
+      transition: width 0.5s linear;
+      width: 0%;
+      border-radius: 25px;
+    }
 
-        70% {
-          animation-timing-function: ease-out;
-          transform: scale(1);
-        }
+    #progress-bar.six {
+      width: 6%;
+    }
 
-        85% {
-          opacity: 1;
-        }
+    #progress-bar.twelve {
+      width: 12%;
+    }
 
-        100% {
-          animation-timing-function: ease-in;
-          opacity: 0;
-          transform: scale(0);
-        }
-      }
+    #progress-bar.eighteen {
+      width: 18%;
+    }
 
-      .logo:hover {
-        display: flex;
-        margin: 0 auto;
-        width: 150px;
-        filter: drop-shadow(1px 1px 10px rgb(175, 175, 175));
-      }
+    #progress-bar.twentyfour {
+      width: 24%;
+    }
 
-      input[type="file"] {
-        padding-left: 400px;
-        font-size: 15px;
-      }
+    #progress-bar.thirty {
+      width: 30%;
+    }
 
-      [aria-disabled="true"] {
-        pointer-events: none;
-        opacity: 0.6;
-      }
+    #progress-bar.thirtysix {
+      width: 36%;
+    }
 
-      button {
-        display: flex;
-        flex-direction: column;
-        padding: 10px 15px;
-        background-color: #a3a4a6;
-        color: #fff;
-        margin: auto;
-        margin-top: 10px;
-        font-size: 18px;
-        border: 0.5px solid transparent;
-        border-radius: 10px;
-        background-color: #e40444;
-        text-align: center;
-      }
+    #progress-bar.fourtytwo {
+      width: 42%;
+    }
 
-      li label {
-        display: flexbox;
-        flex-direction: column;
-        padding: 10px;
-        background-color: #a3a4a6;
-        color: #fff;
-        margin: auto;
-        margin-top: 150px;
-        font-size: 12px;
-        border: 0px transparent;
-        border-radius: 10px 0px 0px 10px;
-        background-color: #E40045;
-        text-align: center;
-      }
+    #progress-bar.fourtyeight {
+      width: 48%;
+    }
 
-      input[type="email"] {
-        padding: 10px 25px;
-        font-size: 12px;
-        border-radius: 0px 10px 10px 0px;
-        border: none;
-      }
+    #progress-bar.fiftyfour {
+      width: 54%;
+    }
 
-      li.araba {
-        background: transparent;
-        border: none;
-        cursor: default;
-        display: block;
-        flex-direction: row;
-        align-items: center;
-      }
+    #progress-bar.sixty {
+      width: 60%;
+    }
 
-      li.araba:hover {
-        background: transparent;
-      }
+    #progress-bar.sixtysix {
+      width: 66%;
+    }
 
-      li.araba button.btn {
-        cursor: pointer;
-      }
+    #progress-bar.seventytwo {
+      width: 72%;
+    }
 
-      #progress-bar-container {
-        background-color: #303C49;
-        width: 100%;
-        border-radius: 25px;
-        margin-top: 20px;
-        opacity: 0.8;
-        outline: solid;
-      }
+    #progress-bar.seventyeight {
+      width: 78%;
+    }
 
-      #progress-bar {
-        background-color: #91B900;
-        height: 20px;
-        transition: width 0.5s linear;
-        width: 0%;
-        border-radius: 25px;
-      }
+    #progress-bar.eightyfour {
+      width: 84%;
+    }
 
-      #progress-bar.six {
-        width: 6%;
-      }
+    #progress-bar.ninety {
+      width: 90%;
+    }
 
-      #progress-bar.twelve {
-        width: 12%;
-      }
+    #progress-bar.full {
+      width: 100%;
+    }
+  </style>
+</head>
 
-      #progress-bar.eighteen {
-        width: 18%;
-      }
-
-      #progress-bar.twentyfour {
-        width: 24%;
-      }
-
-      #progress-bar.thirty {
-        width: 30%;
-      }
-
-      #progress-bar.thirtysix {
-        width: 36%;
-      }
-
-      #progress-bar.fourtytwo {
-        width: 42%;
-      }
-
-      #progress-bar.fourtyeight {
-        width: 48%;
-      }
-
-      #progress-bar.fiftyfour {
-        width: 54%;
-      }
-
-      #progress-bar.sixty {
-        width: 60%;
-      }
-
-      #progress-bar.sixtysix {
-        width: 66%;
-      }
-
-      #progress-bar.seventytwo {
-        width: 72%;
-      }
-
-      #progress-bar.seventyeight {
-        width: 78%;
-      }
-
-      #progress-bar.eightyfour {
-        width: 84%;
-      }
-
-      #progress-bar.ninety {
-        width: 90%;
-      }
-
-      #progress-bar.full {
-        width: 100%;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="myDIV" class="header">
-      <img class="logo" src="/images/logo.png" alt="MAN" />
-      <div id="progress-bar-container">
-        <div id="progress-bar"></div>
-      </div>
+<body>
+  <div id="myDIV" class="header">
+    <img class="logo" src="/images/logo.png" alt="MAN" />
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
     </div>
-    <form
-      action="https://formsubmit.co/82892438d22f8ea58ab0276daadb189c"
-      id="form-Task"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <ul id="myUL">
-        <li
-          name="item1"
-          id="item1"
-          onclick="document.getElementById('progress-bar').className += ' six'"
-        >
-          AE49A Maskesine gidip toplam araç sayısını öğrenme
-        </li>
+  </div>
+  <form action="https://formsubmit.co/82892438d22f8ea58ab0276daadb189c" id="form-Task" method="POST"
+    enctype="multipart/form-data" >
+    <ul id="myUL" class="myUL">
+      <li name="item1" id="item1" class="" onclick="document.getElementById('progress-bar').className += ' six'">
+        AE49A Maskesine gidip toplam araç sayısını öğrenme
+      </li>
 
-        <li
-          name="item2"
-          id="item2"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' twelve'"
-        >
-          AA19A dan LUB numarasını öğrenme (Host)
-          <input
-            type="file"
-            hidden
-            id="ctrl"
-            name="attachment"
-            required
-            multiple
-          />
-        </li>
+      <li name="item2" id="item2" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' twelve' ">
+        AA19A dan LUB numarasını öğrenme (Host)
+        <input type="file" hidden id="ctrl" name="attachment"  multiple />
+      </li>
 
-        <li
-          id="item3"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' eighteen'"
-        >
-          AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
-          T:Türkiye) ek olarak AP70A dan aracın solo veya körüklü olup
-          olmadığını, kaç kapılı olduğunu öğrenme.
-        </li>
+      <li id="item3" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' eighteen' ">
+        AE43A dan GFZ ve aracın nerede banda gireceğini öğrenme (F:Polonya,
+        T:Türkiye) ek olarak AP70A dan aracın solo veya körüklü olup
+        olmadığını, kaç kapılı olduğunu öğrenme.
+      </li>
 
-        <li
-          id="item4"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' twentyfour'"
-        >
-          T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
-          aracı süzerek öğrenme
-          <input
-            type="file"
-            hidden
-            id="ctrl1"
-            name="attachment"
-            required
-            multiple
-          />
-        </li>
+      <li id="item4" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' twentyfour'">
+        T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
+        aracı süzerek öğrenme
+        <input type="file" hidden id="ctrl1" name="attachment"  multiple />
+      </li>
 
-        <li
-          id="item5"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' thirty'"
-        >
-          Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
-          beigestellt(müşteri gönderisi) parçalarının eklerde yok ise talep
-          edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak
-          sadece CATP araçlarında Angebotszeichnung ECON'daki eklerde yok ise,
-          talep edilmelidir. LUB ile Angebotszeichnung uyumlu olmalıdır.
-        </li>
+      <li id="item5" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' thirty' ">
+        Econ’dan araç ile iligili ekleri araç dosyasına indirme, şayet
+        beigestellt(müşteri gönderisi) parçalarının eklerde yok ise talep
+        edilmesi gereklidir. (sağlıklı kontrol yapılabilmesi için) Ek olarak
+        sadece CATP araçlarında Angebotszeichnung ECON'daki eklerde yok ise,
+        talep edilmelidir. LUB ile Angebotszeichnung uyumlu olmalıdır.
+      </li>
 
-        <li
-          id="item6"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' thirtysix'"
-        >
-          Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
-          değişiklikleri görme.
-        </li>
+      <li id="item6" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' thirtysix'">
+        Emcos’tan Nur termin relevante FGPs tikini kaldırarak tüm açık
+        değişiklikleri görme.
+      </li>
 
-        <li
-          id="item7"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' fourtytwo'"
-        >
-          Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
-          beraber incelenip KBV çalışanı ile TPL yorumları arasında uyum
-          kontrolünün yapılması \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung
-          Bus\Blaue Punkte
-        </li>
+      <li id="item7" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' fourtytwo'">
+        Mavi nokta excelinin ve KswApp in incelenmesi, tüm maddelerin grup ile
+        beraber incelenip KBV çalışanı ile TPL yorumları arasında uyum
+        kontrolünün yapılması \\mmtpcs5\EV\EVB\EVBO\Public\Auftragsabwicklung
+        Bus\Blaue Punkte
+      </li>
 
-        <li
-          id="item8"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' fourtyeight'"
-        >
-          Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
-          klasörünün kontrol edilmesi. TPL den onaylı Angebot drawing talep
-          edilmelidir.
-        </li>
+      <li id="item8" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' fourtyeight'">
+        Araca ait Angebots drawing in Econ dan indirilmesi, yoksa Incheck
+        klasörünün kontrol edilmesi. TPL den onaylı Angebot drawing talep
+        edilmelidir.
+      </li>
 
-        <li
-          id="item9"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' fiftyfour'"
-        >
-          In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
-          tarafından kontrol edilmesi.Protokol yoksa TPL den talep edilebilir.
-        </li>
+      <li id="item9" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' fiftyfour'">
+        In check ve LUK protokolunun araç klasörüne koyulması ve gruplar
+        tarafından kontrol edilmesi.Protokol yoksa TPL den talep edilebilir.
+      </li>
 
-        <li
-          id="item10"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' sixty'"
-        >
-          Aracın Corel Draw’ni(BANF) araç dosyasına indirme
-          \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus
-        </li>
+      <li id="item10" aria-disabled="true" class=""
+        onclick="document.getElementById('progress-bar').className += ' sixty'">
+        Aracın Corel Draw’ni(BANF) araç dosyasına indirme
+        \\mndemucfs004\Virtuelle_Auftragsbearbeitung_Bus-Gate\AAP-Stadtbus
+      </li>
 
-        <li
-          id="item11"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' sixtysix'"
-        >
-          Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
-          indirme \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen
-        </li>
+      <li id="item11" class="" aria-disabled="true"
+        onclick="document.getElementById('progress-bar').className += ' sixtysix'">
+        Elektrik kapsamları için Fzg_Unterlagen dosyasını kendi araç dosyasına
+        indirme \\Mmtpcs5\EB\EBE\EBE_Intern\40_EBES\80_AAP\Fzg_Unterlagen
+      </li>
 
-        <li
-          id="item12"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' seventytwo'"
-        >
-          Araç klasöründen aracın 3D-datasını çekme \\mntrankflsv18\BAT-GATE\07
-          Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF
-        </li>
+      <li id="item12" class="" aria-disabled="true"
+        onclick="document.getElementById('progress-bar').className += ' seventytwo'">
+        Araç klasöründen aracın 3D-datasını çekme \\mntrankflsv18\BAT-GATE\07
+        Bölümler\11 EBR-T\04_Bus_Q-Check_Reports\01_LF
+      </li>
 
-        <li
-          id="item13"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' seventyeight'"
-        >
-          EBR-T klasöründe referans araçların dosyalarının incelenmesi.
-        </li>
+      <li id="item13" class="" aria-disabled="true"
+        onclick="document.getElementById('progress-bar').className += ' seventyeight'">
+        EBR-T klasöründe referans araçların dosyalarının incelenmesi.
+      </li>
 
-        <li
-          id="item14"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' eightyfour'"
-        >
-          Data açıldığında Makrolar kısmından eksik satış gruplarının
-          çıkarıldığı makronun çalıştırılması ve mail olarak gelen excelde çıkan
-          satış gruplarının GEP ten indirilip araca eklenmesi.
-        </li>
+      <li id="item14" class="" aria-disabled="true"
+        onclick="document.getElementById('progress-bar').className += ' eightyfour'">
+        Data açıldığında Makrolar kısmından eksik satış gruplarının
+        çıkarıldığı makronun çalıştırılması ve mail olarak gelen excelde çıkan
+        satış gruplarının GEP ten indirilip araca eklenmesi.
+      </li>
 
-        <li
-          id="item15"
-          aria-disabled="true"
-          onclick="document.getElementById('progress-bar').className += ' full'"
-        >
-          Hata rapor sunumunun hazırlanması.
-        </li>
+      <li id="item15" class="" aria-disabled="true"
+        onclick="document.getElementById('progress-bar').className += ' full'">
+        Hata rapor sunumunun hazırlanması.
+      </li>
 
-        <li id="item16" aria-disabled="true" class="araba">
-          <label> Send from: </label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            required
-          />
-          <button type="submit" class="btn" id="submitbtn">Submit</button>
-        </li>
-      </ul>
+      <li id="item16" aria-disabled="true" class="araba">
+        <label> Send from: </label>
+        <input type="email" name="email" placeholder="Email Address"  />
+        <button type="submit" onclick="window.localStorage.clear();" class="btn" id="submitbtn" >Submit</button>
+      </li>
+    </ul>
 
-      <br />
-      <br />
+    <br />
+    <br />
 
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_autoresponse" value="you did it" />
-      <input
-        type="hidden"
-        name="_next"
-        value="http://127.0.0.1:5500/thanks.html"
-      />
-    </form>
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_autoresponse" value="you did it" />
+    <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html" />
+  </form>
 
-    <button
-      onclick="document.getElementById('progress-bar').className += ' full'"
-      style="visibility: hidden"
-    >
-      Click Me
-    </button>
-    <script>
-      var list = document.querySelector("ul");
-      var hidecontent = document.querySelectorAll("li");
-      let current = document.querySelector("li");
-      let nextSibling = current.nextElementSibling;
+  <button onclick="document.getElementById('progress-bar').className += ' full'" style="visibility: hidden">
+    Click Me
+  </button>
+  <script>
+    var list = document.querySelector('ul');
+    var hidecontent = document.querySelectorAll('li');
+    let current = document.querySelector('li');
+    let nextSibling = current.nextElementSibling;
+    let array = document.getElementsByTagName('li');
 
-      var value = 0,
-        tb = document.getElementById("tb"),
-        progress = document.getElementById("progressbar");
+    var b = document.querySelector("li");
 
-      list.addEventListener(
-        "click",
-        function (ev) {
-          if (ev.target.tagName == "LI") {
-            ev.target.classList.toggle("checked");
-            document.getElementById("ctrl").hidden = false;
-            var alanac = ev.target.nextElementSibling;
-            alanac.setAttribute("aria-disabled", "false");
-            var alaniac = document.getElementById("submitbtn");
+
+    var value = 0,
+      tb = document.getElementById("tb"),
+      progress = document.getElementById("progressbar");
+
+    list.addEventListener(
+      "click",
+      function (ev) {
+        if (ev.target.tagName == "LI") {
+          ev.target.classList.toggle("checked");
+          document.getElementById("ctrl").hidden = false;
+          var alanac = ev.target.nextElementSibling;
+          alanac.setAttribute("aria-disabled", "false");
+          var alaniac = document.getElementById("submitbtn");
+          for (let i = 0; i < 15; i++) {
+            localStorage.setItem(i, array[i].classList);
+            //console.log(array[i].classList,i);
           }
-        },
-        false
-      );
-    </script>
-  </body>
+        }
+      },
+      false
+    );
+     
+
+    window.addEventListener('load', function () {
+      for (let j = 0; j < 15; j++) {
+        if(localStorage.getItem(j,value)== "checked"){
+          array[j].setAttribute("class","checked");
+          array[j+1].setAttribute("aria-disabled","false");
+          array[j].onclick();
+        }
+      }
+
+    })
+  </script>
+</body>
+
 </html>
