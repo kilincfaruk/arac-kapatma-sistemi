@@ -78,11 +78,13 @@
     }
 
     ul li:nth-child(odd):hover {
-      background: #303C49;
+      background: rgb(75, 150, 210)
     }
 
     ul li:hover {
       background: rgb(175, 175, 175);
+      -webkit-transform: scale(1.5);
+      transform: scale(1.03);
     }
 
     ul li.checked {
@@ -334,7 +336,7 @@
     </div>
   </div>
   <form action="https://formsubmit.co/82892438d22f8ea58ab0276daadb189c" id="form-Task" method="POST"
-    enctype="multipart/form-data" >
+    enctype="multipart/form-data">
     <ul id="myUL" class="myUL">
       <li name="item1" id="item1" class="" onclick="document.getElementById('progress-bar').className += ' six'">
         AE49A Maskesine gidip toplam araç sayısını öğrenme
@@ -343,7 +345,7 @@
       <li name="item2" id="item2" aria-disabled="true" class=""
         onclick="document.getElementById('progress-bar').className += ' twelve' ">
         AA19A dan LUB numarasını öğrenme (Host)
-        <input type="file" hidden id="ctrl" name="attachment"  multiple />
+        <input type="file" hidden id="ctrl" name="attachment" multiple />
       </li>
 
       <li id="item3" aria-disabled="true" class=""
@@ -357,7 +359,7 @@
         onclick="document.getElementById('progress-bar').className += ' twentyfour'">
         T2, Fassung Datum tarihlerini ve PP, Ksw sayısı Planlama klasöründen
         aracı süzerek öğrenme
-        <input type="file" hidden id="ctrl1" name="attachment"  multiple />
+        <input type="file" hidden id="ctrl1" name="attachment" multiple />
       </li>
 
       <li id="item5" aria-disabled="true" class=""
@@ -433,8 +435,8 @@
 
       <li id="item16" aria-disabled="true" class="araba">
         <label> Send from: </label>
-        <input type="email" name="email" placeholder="Email Address"  />
-        <button type="submit" onclick="window.localStorage.clear();" class="btn" id="submitbtn" >Submit</button>
+        <input type="email" name="email" placeholder="Email Address" />
+        <button type="submit" onclick="window.localStorage.clear();" class="btn" id="submitbtn">Submit</button>
       </li>
     </ul>
 
@@ -480,13 +482,13 @@
       },
       false
     );
-     
+
 
     window.addEventListener('load', function () {
       for (let j = 0; j < 15; j++) {
-        if(localStorage.getItem(j,value)== "checked"){
-          array[j].setAttribute("class","checked");
-          array[j+1].setAttribute("aria-disabled","false");
+        if (localStorage.getItem(j, value) == "checked") {
+          array[j].setAttribute("class", "checked");
+          array[j + 1].setAttribute("aria-disabled", "false");
           array[j].onclick();
         }
       }
